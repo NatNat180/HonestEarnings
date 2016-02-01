@@ -1,0 +1,199 @@
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif|Pacifico);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:600);
+
+body {
+	/*font-family: 'Bree Serif', serif;*/
+	font-family: 'Josefin Slab', serif;
+	/*background-color: #111;*/
+	color: #111;
+	background: white;
+	padding-top: 70px;
+	/*color: white;*/
+	/*color: #CCCCCC;*/
+	/*color: #7F5959;*/
+}
+
+h1 {
+	/*font-family: 'Arvo', serif;*/
+	font-family: 'Pacifico', cursive;
+	color: white;
+	text-shadow: 1px 1px 3px #111;
+	/*font-family: 'Bree Serif', serif;*/
+}
+
+h2 {
+	/*font-family: 'Pacifico', cursive;*/
+	
+}
+
+h3 {
+	font-family: 'Pacifico', cursive;
+}
+
+table th{
+	font-family: 'Bree Serif', serif;
+	/*font-family: 'Pacifico', cursive;*/
+}
+
+.nav-title {
+	/*display: block;*/
+	position: absolute;
+	margin-top: 2px;
+	margin-left: 3px;
+}
+
+.paid-button {
+	font-size: 18px;	
+}
+
+.align-center {
+	text-align: center;
+}
+
+.hide {
+	display: none;
+}
+
+/*
+nav {
+	margin-bottom: 10px auto;
+	
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}*/
+
+nav li {
+	float: left;
+	font-family: 'Arvo', serif;
+}
+
+/*
+nav li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+nav li a:hover {
+	background-color: #111;
+	text-decoration: none;
+	color: white;
+}*/
+
+section {
+	position: absolute;
+	/*top: 50%;*/
+	top: 20%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	overflow: auto;
+}
+
+article {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#wrapper {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.middle {
+	position: relative;
+	left: 50%;
+	margin-right: -50%;
+}
+
+.push-down {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	overflow: auto;
+}
+
+.push-down-little {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	overflow: auto;
+}
+
+#point-input {
+	margin-top: 10px;
+	display: inline-block;
+	/*float: left;*/
+}
+
+#text-input {
+	margin-top: 10px;
+	display: inline-block;
+	float: right;
+}
+
+placeholder {
+	opacity: .8;
+}
+
+#point-input input {
+	margin-top: 5px;
+	margin-left: 5px;
+	display: inline-block;
+	/*float: right;*/
+}
+
+table tr td {
+	padding-left: 10px;
+	width: 150px;
+}
+
+#servlet-table {
+	margin-top: 150px;
+	padding-left: 10px;
+}
+
+#submit {
+	/*margin-top: 30px;*/
+}
+
+#point-system {
+	margin: 0;
+	padding: 0;
+}
+
+#minus-button {
+	display: inline;
+}
+
+#placeholder-amount {
+	display: inline;
+	width: 50px;
+}
+
+#plus-button {
+	display: inline;
+}
+
+#right {
+	float: right;
+}
+
+#left-of-input {
+	float: left;
+	margin-top: 15px;
+	padding-right: 10px;
+}
