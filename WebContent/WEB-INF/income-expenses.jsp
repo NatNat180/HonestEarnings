@@ -4,26 +4,13 @@
 <!DOCTYPE html>
 <html lang="eng">
 <head>
-<c:import url="/WEB-INF/header-data-check.html"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-<!--<script type="text/javascript">
-function dynInput(cbox){
-	if(cbox.checked){
-		var input = document.createElement("input");
-		input.type = "text";
-		input.name = "categoryValue";
-		var div = document.createElement("div");
-		div.id = cbox.value;
-		div.innerHTML = cbox.value + " ";
-		div.appendChild(input);
-		document.getElementById("point-input").appendChild(div);
-	} else {
-		document.getElementById(cbox.value).remove();
-	}
-}
-</script>-->
 <script type="text/javascript">
 function dynInput(cbox){
 	if(cbox.checked){
@@ -70,14 +57,14 @@ function dynInput(cbox){
 			}
 		}
 		var div = document.createElement("div");
-		<!--div.id = cbox.value;-->
-		div.id = cbox.name;
+		div.id = cbox.value;
+		<!--div.id = cbox.name;-->
 		div.innerHTML = cbox.value + " ";
 		div.appendChild(input);
 		
 		document.getElementById("point-input").appendChild(div);
 	} else {
-		document.getElementById(cbox.name).remove();
+		document.getElementById(cbox.value).remove();
 	}
 }
 </script>
@@ -101,75 +88,23 @@ function checkForm(form){
 <script type="text/javascript">
 function isNumberKey(evt) {
    var charCode = (evt.which) ? evt.which : event.keyCode;
-   if (charCode > 31 && (charCode < 48 || charCode > 57)){
+   if (charCode > 31 && (charCode < 46 || charCode > 57)){
 	   return false;
    }
    return true;
 }
 </script>
-<!-- <script type="text/javascript">
-function dynInput(cbox){
-	if(cbox.checked){	
-		var amount = document.createElement("p");
-		amount.type = "text";
-		amount.name = "categoryValue";
-		amount.id = "placeholder-amount";
-		amount.value = "0";
-		amount.innerHTML = " " + amount.value;
-		
-		var plusBtn = document.createElement("input");
-		plusBtn.type = "button";
-		plusBtn.value = "+";
-		plusBtn.id = "plus-button";
-		plusBtn.onclick = function incrementValue(){
-			var value = parseInt(document.getElementById('placeholder-amount').value, 10);
-			value = isNaN(value) ? 0 : value;
-			value++;
-			document.getElementById('placeholder-amount').value = value;
-			document.getElementById('placeholder-amount').innerHTML = " " + value;
-			
-			if(value > 100){
-				window.alert("You cannot allot more than 100 points to a category.");
-				value--;
-				document.getElementById('placeholder-amount').value = value;
-				document.getElementById('placeholder-amount').innerHTML = " " + value;
-			}
-		}
-
-		var minusBtn = document.createElement("input");
-		minusBtn.type = "button";
-		minusBtn.value = "-";
-		minusBtn.id = "minus-button";
-		minusBtn.onclick = function decrementValue(){
-			var value = parseInt(document.getElementById('placeholder-amount').value, 10);
-			value = isNaN(value) ? 0 : value;
-			value--;
-			document.getElementById('placeholder-amount').value = value;
-			document.getElementById('placeholder-amount').innerHTML = " " + value;
-			
-			if(value < 0){
-				window.alert("You cannot allot less than 0 points to a category.");
-				value++;
-				document.getElementById('placeholder-amount').value = value;
-				document.getElementById('placeholder-amount').innerHTML = " " + value;
-			}
-		}
-		
-		var div = document.createElement("div");
-		<!--div.id = cbox.value;-->
-		<!--div.innerHTML = cbox.value + " ";-->
-		<!--div.id = "point-system";-->
-		<!--$(div).append(minusBtn, amount, plusBtn);
-		
-		document.getElementById("point-input").appendChild(div);
-	} else {
-		document.getElementById("point-system").remove();
-	}
-}-->
 <title>Log Income and Known Expenses</title>
 </head>
-<section class="push-down">
-<h2>Provide income and pay-period</h2>
+
+<body>
+<c:import url="/WEB-INF/header-data-check.html"/>
+<section class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2 class="panel-title">Provide income and pay-period</h2>
+</div>
+	<div class="panel-body">
 	<form action="process-income-expenses" method="post" role="form" onsubmit="return checkForm(this);" id="income-expenses-form">
 		Net Income: 
 		<input type="text" placeholder="per pay period" name="netIncome" id="netIncome" onkeypress="return isNumberKey(event)" class="form-control" required/>
@@ -232,15 +167,22 @@ function dynInput(cbox){
 		<td><input type="checkbox" name="category" value="misc" onclick="dynInput(this);">Miscellaneous</td>
 		</tr>
 		</table>
-		<br />
-		Allot points (percent amount) to each category for budgeting
-		<p>Total points should not go above 100</p>
-		<h2 id='total-points'>100</h2>
-		<div id="point-input"></div>
-		<br />
-		&nbsp;
-		<input type="submit" name="submit" value="Submit" id="submit"/>
+		<hr class="faded-line">
+		<p style="text-align: center;">Allot points (percent amount) to each category for budgeting</p>
+		<h4 style="text-align: center;">Total Points Left:</h4>
+		<h2 id='total-points' class="label label-success">100</h2>
+		<br>
+		<br>
+		<div class="panel panel-default">
+  			<div class="panel-body">
+				<div id="point-input"></div>
+			</div>
+			&nbsp;
+			<input type="submit" name="submit" value="Submit" id="submit" style="float: right; margin-top: -10px; margin-right: 5px;"/>
+		</div>
 	</form>
-</section>
+	</div>
+</div>
+</section> <!-- container -->
 </body>
 </html>

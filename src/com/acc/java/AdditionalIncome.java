@@ -1,6 +1,7 @@
 package com.acc.java;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,12 +35,15 @@ public class AdditionalIncome extends HttpServlet {
         return (double) tmp / factor;
     }
     
-    public static double calculateAmount(Double percent, Double currentIncome){
+    public static double calculateAmount(Double percent, Double additionalIncome, Double currentAllowance){
     	
-    	return round(((percent/100) * currentIncome), 2);	
+    	return round((((percent/100) * additionalIncome) + currentAllowance), 2);	
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 
 		HttpSession session = request.getSession();
 		Object userName = session.getAttribute("userName");
@@ -47,124 +51,178 @@ public class AdditionalIncome extends HttpServlet {
 		Connection con;
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdatabase", "root", "Bigbones12");
-			String obtainCurrentAndOriginalAllowance = "SELECT Total_Allowance, Original_Allowance "
-					+ "FROM user WHERE userName = '" + userName + "'";
+			String obtainCurrentAndOriginalAllowance = "SELECT Auto_Insurance, Auto_Maintenance,"
+						+ "Babysitter, Books,"
+						+ "Cable, Cleaning, Clothes, Children,"
+						+ "Donations, Electricity, Entertainment, Eating_Out,"
+						+ "Fuel, Gas, Groceries, Gifts,"
+						+ "Grooming, Home_Repair, Internet, Medical,"
+						+ "Phone, Retirement, Savings, Spending,"
+						+ "Vacation, Misc, Total_Allowance, Original_Allowance "
+						+ "FROM user WHERE userName = '" + userName + "'";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(obtainCurrentAndOriginalAllowance);
 			
 			Double currentAllowance = 0.0;
+			double autoInsurance = 0;
+			double autoMaintenance = 0; 
+			double babysitter = 0;
+			double books = 0;
+			double cable = 0;
+			double cleaning = 0;
+			double clothes = 0;
+			double children = 0;
+			double donations = 0;
+			double electricity = 0;
+			double entertainment = 0;
+			double eatingOut = 0;
+			double fuel = 0;
+			double gas = 0;
+			double groceries = 0;
+			double gifts = 0;
+			double grooming = 0;
+			double homeRepair = 0;
+			double internet = 0;
+			double medical = 0;
+			double phone = 0;
+			double retirement = 0;
+			double savings = 0;
+			double spending = 0;
+			double vacation = 0;
+			double misc = 0;
 			
 			String addIncome = request.getParameter("additional-income");
 			Double addIncomeNum = Double.parseDouble(addIncome);
 			
+			if(addIncome == null){
+				response.sendRedirect("/WEB-INF/home.jsp");
+				out.println("<div class='alert alert-danger' role='alert'>"
+						+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+						+ "<span aria-hidden='true'>&times;</span></button>"
+						+ "You did not input your additional income.</div>");
+			}
+			
 			//obtain the original allowance value
 			while(rs.next()){
-				currentAllowance = rs.getDouble(1);
+				autoInsurance = rs.getDouble(1); autoMaintenance = rs.getDouble(2);
+				babysitter = rs.getDouble(3); books = rs.getDouble(4);
+				cable = rs.getDouble(5); cleaning = rs.getDouble(6);
+				clothes = rs.getDouble(7); children = rs.getDouble(8);
+				donations = rs.getDouble(9); electricity = rs.getDouble(10);
+				entertainment = rs.getDouble(11); eatingOut = rs.getDouble(12);
+				fuel = rs.getDouble(13); gas = rs.getDouble(14);
+				groceries = rs.getDouble(15); gifts = rs.getDouble(16);
+				grooming = rs.getDouble(17); homeRepair = rs.getDouble(18);
+				internet = rs.getDouble(19); medical = rs.getDouble(20);
+				phone = rs.getDouble(21); retirement = rs.getDouble(22);
+				savings = rs.getDouble(23); spending = rs.getDouble(24);
+				vacation = rs.getDouble(25); misc = rs.getDouble(26);
+				currentAllowance = rs.getDouble(27);
 				currentAllowance = currentAllowance + addIncomeNum;			
 			}
 			
 			//update each corresponding category under the new allowance amount			
-			double autoInsuranceValue = calculateAmount(ProcessIncomeExpenses.getAutoInsurancePercent(), currentAllowance);
+			double autoInsuranceValue = calculateAmount(ProcessIncomeExpenses.getAutoInsurancePercent(), addIncomeNum, autoInsurance);
 			String autoInsuranceValueString = Double.toString(autoInsuranceValue);
 			session.setAttribute("autoInsurance", autoInsuranceValueString);
 
-			double autoMaintenanceValue = calculateAmount(ProcessIncomeExpenses.getAutoMaintenancePercent(), currentAllowance);
+			double autoMaintenanceValue = calculateAmount(ProcessIncomeExpenses.getAutoMaintenancePercent(), addIncomeNum, autoMaintenance);
 			String autoMaintenanceValueString = Double.toString(autoMaintenanceValue);
 			session.setAttribute("autoMaintenance", autoMaintenanceValueString);
 			
-			double babysitterValue = calculateAmount(ProcessIncomeExpenses.getBabysitterPercent(), currentAllowance);
+			double babysitterValue = calculateAmount(ProcessIncomeExpenses.getBabysitterPercent(), addIncomeNum, babysitter);
 			String babysitterValueString = Double.toString(babysitterValue);	
 			session.setAttribute("babysitter", babysitterValueString);
 
-			double booksValue = calculateAmount(ProcessIncomeExpenses.getBooksPercent(), currentAllowance);
+			double booksValue = calculateAmount(ProcessIncomeExpenses.getBooksPercent(), addIncomeNum, books);
 			String booksValueString = Double.toString(booksValue);
 			session.setAttribute("books", booksValueString);
 
-			double cableValue = calculateAmount(ProcessIncomeExpenses.getCablePercent(), currentAllowance);
+			double cableValue = calculateAmount(ProcessIncomeExpenses.getCablePercent(), addIncomeNum, cable);
 			String cableValueString = Double.toString(cableValue);
 			session.setAttribute("cable", cableValueString);
 
-			double cleaningValue = calculateAmount(ProcessIncomeExpenses.getCleaningPercent(), currentAllowance);
+			double cleaningValue = calculateAmount(ProcessIncomeExpenses.getCleaningPercent(), addIncomeNum, cleaning);
 			String cleaningValueString = Double.toString(cleaningValue);
 			session.setAttribute("cleaning", cleaningValueString);
 
-			double clothesValue = calculateAmount(ProcessIncomeExpenses.getClothesPercent(), currentAllowance);
+			double clothesValue = calculateAmount(ProcessIncomeExpenses.getClothesPercent(), addIncomeNum, clothes);
 			String clothesValueString = Double.toString(clothesValue);
 			session.setAttribute("clothes", clothesValueString);
 
-			double childrenValue = calculateAmount(ProcessIncomeExpenses.getChildrenPercent(), currentAllowance);
+			double childrenValue = calculateAmount(ProcessIncomeExpenses.getChildrenPercent(), addIncomeNum, children);
 			String childrenValueString = Double.toString(childrenValue);
 			session.setAttribute("children", childrenValueString);
 
-			double donationsValue = calculateAmount(ProcessIncomeExpenses.getDonationsPercent(), currentAllowance);
+			double donationsValue = calculateAmount(ProcessIncomeExpenses.getDonationsPercent(), addIncomeNum, donations);
 			String donationsValueString = Double.toString(donationsValue);
 			session.setAttribute("donations", donationsValueString);
 
-			double electricityValue = calculateAmount(ProcessIncomeExpenses.getElectricityPercent(), currentAllowance);
+			double electricityValue = calculateAmount(ProcessIncomeExpenses.getElectricityPercent(), addIncomeNum, electricity);
 			String electricityValueString = Double.toString(electricityValue);
 			session.setAttribute("electricity", electricityValueString);
 
-			double entertainmentValue = calculateAmount(ProcessIncomeExpenses.getEntertainmentPercent(), currentAllowance);
+			double entertainmentValue = calculateAmount(ProcessIncomeExpenses.getEntertainmentPercent(), addIncomeNum, entertainment);
 			String entertainmentValueString = Double.toString(entertainmentValue);
 			session.setAttribute("entertainment", entertainmentValueString);
 
-			double eatingOutValue = calculateAmount(ProcessIncomeExpenses.getEatingOutPercent(), currentAllowance);
+			double eatingOutValue = calculateAmount(ProcessIncomeExpenses.getEatingOutPercent(), addIncomeNum, eatingOut);
 			String eatingOutValueString = Double.toString(eatingOutValue);
 			session.setAttribute("eatingOut", eatingOutValueString);
 
-			double fuelValue = calculateAmount(ProcessIncomeExpenses.getFuelPercent(), currentAllowance);
+			double fuelValue = calculateAmount(ProcessIncomeExpenses.getFuelPercent(), addIncomeNum, fuel);
 			String fuelValueString = Double.toString(fuelValue);
 			session.setAttribute("fuel", fuelValueString);
 
-			double gasValue = calculateAmount(ProcessIncomeExpenses.getGasPercent(), currentAllowance);
+			double gasValue = calculateAmount(ProcessIncomeExpenses.getGasPercent(), addIncomeNum, gas);
 			String gasValueString = Double.toString(gasValue);
 			session.setAttribute("gas", gasValueString);
 
-			double groceriesValue = calculateAmount(ProcessIncomeExpenses.getGroceriesPercent(), currentAllowance);
+			double groceriesValue = calculateAmount(ProcessIncomeExpenses.getGroceriesPercent(), addIncomeNum, groceries);
 			String groceriesValueString = Double.toString(groceriesValue);
 			session.setAttribute("groceries", groceriesValueString);
 
-			double giftsValue = calculateAmount(ProcessIncomeExpenses.getGiftsPercent(), currentAllowance);
+			double giftsValue = calculateAmount(ProcessIncomeExpenses.getGiftsPercent(), addIncomeNum, gifts);
 			String giftsValueString = Double.toString(giftsValue);
 			session.setAttribute("gifts", giftsValueString);
 
-			double groomingValue = calculateAmount(ProcessIncomeExpenses.getGroomingPercent(), currentAllowance);
+			double groomingValue = calculateAmount(ProcessIncomeExpenses.getGroomingPercent(), addIncomeNum, grooming);
 			String groomingValueString = Double.toString(groomingValue);
 			session.setAttribute("grooming", groomingValueString);
 
-			double homeRepairValue = calculateAmount(ProcessIncomeExpenses.getHomeRepairPercent(), currentAllowance);
+			double homeRepairValue = calculateAmount(ProcessIncomeExpenses.getHomeRepairPercent(), addIncomeNum, homeRepair);
 			String homeRepairValueString = Double.toString(homeRepairValue);
 			session.setAttribute("homeRepair", homeRepairValueString);
 
-			double internetValue = calculateAmount(ProcessIncomeExpenses.getInternetPercent(), currentAllowance);
+			double internetValue = calculateAmount(ProcessIncomeExpenses.getInternetPercent(), addIncomeNum, internet);
 			String internetValueString = Double.toString(internetValue);
 			session.setAttribute("internet", internetValueString);
 
-			double medicalValue = calculateAmount(ProcessIncomeExpenses.getMedicalPercent(), currentAllowance);
+			double medicalValue = calculateAmount(ProcessIncomeExpenses.getMedicalPercent(), addIncomeNum, medical);
 			String medicalValueString = Double.toString(medicalValue);
 			session.setAttribute("medical", medicalValueString);
 
-			double phoneValue = calculateAmount(ProcessIncomeExpenses.getPhonePercent(), currentAllowance);
+			double phoneValue = calculateAmount(ProcessIncomeExpenses.getPhonePercent(), addIncomeNum, phone);
 			String phoneValueString = Double.toString(phoneValue);
 			session.setAttribute("phone", phoneValueString);
 
-			double retirementValue = calculateAmount(ProcessIncomeExpenses.getRetirementPercent(), currentAllowance);
+			double retirementValue = calculateAmount(ProcessIncomeExpenses.getRetirementPercent(), addIncomeNum, retirement);
 			String retirementValueString = Double.toString(retirementValue);
 			session.setAttribute("retirement", retirementValueString);
 
-			double savingsValue = calculateAmount(ProcessIncomeExpenses.getSavingsPercent(), currentAllowance);
+			double savingsValue = calculateAmount(ProcessIncomeExpenses.getSavingsPercent(), addIncomeNum, savings);
 			String savingsValueString = Double.toString(savingsValue);
 			session.setAttribute("savings", savingsValueString);
 
-			double spendingValue = calculateAmount(ProcessIncomeExpenses.getSpendingPercent(), currentAllowance);
+			double spendingValue = calculateAmount(ProcessIncomeExpenses.getSpendingPercent(), addIncomeNum, spending);
 			String spendingValueString = Double.toString(spendingValue);
 			session.setAttribute("spending", spendingValueString);
 
-			double vacationValue = calculateAmount(ProcessIncomeExpenses.getSpendingPercent(), currentAllowance);
+			double vacationValue = calculateAmount(ProcessIncomeExpenses.getSpendingPercent(), addIncomeNum, vacation);
 			String vacationValueString = Double.toString(vacationValue);
 			session.setAttribute("vacation", vacationValueString);
 
-			double miscValue = calculateAmount(ProcessIncomeExpenses.getMiscPercent(), currentAllowance);
+			double miscValue = calculateAmount(ProcessIncomeExpenses.getMiscPercent(), addIncomeNum, misc);
 			String miscValueString = Double.toString(miscValue);
 			session.setAttribute("misc", miscValueString);
 			

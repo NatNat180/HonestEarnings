@@ -60,9 +60,10 @@ public class Login extends HttpServlet {
 			} //Otherwise, tell them to try again
 			else {
 				request.getRequestDispatcher("/WEB-INF/index.jsp").include(request, response);
-				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Username or password was incorrect.');");
-				out.println("</script>");
+				out.println("<div class='alert alert-danger' role='alert'>"
+						+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+						+ "<span aria-hidden='true'>&times;</span></button>"
+						+ "Username or password was incorrect.</div>");
 				System.out.println("Username/password descrepancy");
 				
 			}

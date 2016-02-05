@@ -244,6 +244,10 @@ public class RecordExpense extends HttpServlet {
 					booksExpense + babysitterExpense + autoMaintenanceExpense +
 					autoInsuranceExpense));
 			
+			if(newAllowance.equals(currentAllowance)){
+				response.sendRedirect("/WEB-INF/home.jsp");
+			}
+			
 			//Insert the new values into the table!
 			String updateCategoryTable = "UPDATE user SET Auto_Insurance = ?, Auto_Maintenance = ?,"
 					+ "Babysitter = ?, Books = ?,"

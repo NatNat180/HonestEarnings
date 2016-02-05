@@ -31,6 +31,15 @@ public class ProcessUserData extends HttpServlet {
 
     }
     
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
@@ -59,7 +68,7 @@ public class ProcessUserData extends HttpServlet {
 				int i = 0;
 				while(i <= 26){
 					i++;
-					categoryAllowances.add(rs.getDouble(i));
+					categoryAllowances.add(round(rs.getDouble(i), 2));
 				}
 			}
 			
@@ -121,6 +130,23 @@ public class ProcessUserData extends HttpServlet {
 			Map<String, String> totalAllowanceMap = new HashMap<String, String>();
 			totalAllowanceMap.put(categoryNames.get(26), categoryAllowancesString.get(26));
 			session.setAttribute("totalAllowance", totalAllowanceMap);
+			
+			//Create a List of original category values NEW
+			List<Double> categoryAllowancesOriginal = new ArrayList<Double>();
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getAutoInsuranceInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getAutoMaintenanceInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getBabysitterInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getBooksInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getCableInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getCleaningInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getClothesInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getChildrenInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getDonationsInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getElectricityInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getEntertainmentInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getEatingOutInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getFuelInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getGasInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getGroceriesInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getGiftsInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getGroomingInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getHomeRepairInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getInternetInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getMedicalInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getPhoneInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getRetirementInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getSavingsInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getSpendingInitial());
+			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getVacationInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getMiscInitial());
+			session.setAttribute("originalCategoryAllowances", categoryAllowancesOriginal);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
