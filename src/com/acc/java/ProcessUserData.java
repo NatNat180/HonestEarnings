@@ -31,6 +31,7 @@ public class ProcessUserData extends HttpServlet {
 
     }
     
+<<<<<<< HEAD
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -40,6 +41,8 @@ public class ProcessUserData extends HttpServlet {
         return (double) tmp / factor;
     }
     
+=======
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
@@ -68,7 +71,12 @@ public class ProcessUserData extends HttpServlet {
 				int i = 0;
 				while(i <= 26){
 					i++;
+<<<<<<< HEAD
 					categoryAllowances.add(round(rs.getDouble(i), 2));
+=======
+					categoryAllowances.add(rs.getDouble(i));
+					System.out.println(rs.getDouble(i));
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 				}
 			}
 			
@@ -131,6 +139,7 @@ public class ProcessUserData extends HttpServlet {
 			totalAllowanceMap.put(categoryNames.get(26), categoryAllowancesString.get(26));
 			session.setAttribute("totalAllowance", totalAllowanceMap);
 			
+<<<<<<< HEAD
 			//Create a List of original category values NEW
 			List<Double> categoryAllowancesOriginal = new ArrayList<Double>();
 			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getAutoInsuranceInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getAutoMaintenanceInitial());
@@ -148,6 +157,8 @@ public class ProcessUserData extends HttpServlet {
 			categoryAllowancesOriginal.add(ProcessIncomeExpenses.getVacationInitial()); categoryAllowancesOriginal.add(ProcessIncomeExpenses.getMiscInitial());
 			session.setAttribute("originalCategoryAllowances", categoryAllowancesOriginal);
 			
+=======
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

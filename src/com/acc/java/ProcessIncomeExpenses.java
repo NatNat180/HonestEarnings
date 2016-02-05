@@ -333,7 +333,11 @@ public class ProcessIncomeExpenses extends HttpServlet {
 			session.setAttribute("fuel", fuelValueString);
 			
 			String gasString = request.getParameter("gas");
+<<<<<<< HEAD
 			if(gasString != null){gas = Double.parseDouble(gasString);}
+=======
+			if(gasString != null){cleaning = Double.parseDouble(gasString);}
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			double gasValue = calculateAmount(gas, totalAllowance);
 			String gasValueString = Double.toString(gasValue);
 			session.setAttribute("gas", gasValueString);
@@ -363,7 +367,11 @@ public class ProcessIncomeExpenses extends HttpServlet {
 			session.setAttribute("homeRepair", homeRepairValueString);
 			
 			String internetString = request.getParameter("internet");
+<<<<<<< HEAD
 			if(internetString != null){internet = Double.parseDouble(internetString);}
+=======
+			if(internetString != null){cleaning = Double.parseDouble(internetString);}
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			double internetValue = calculateAmount(internet, totalAllowance);
 			String internetValueString = Double.toString(internetValue);
 			session.setAttribute("internet", internetValueString);

@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Bree+Serif|Pacifico);
 @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:600);
 
+<<<<<<< HEAD
 /*@media screen and (max-width: 700px){
 .income-expenses {
 	top: 80%;
@@ -17,6 +18,18 @@ body {
 	background-repeat: no repeat;
 	background-size: 100% 1200px;*/
 	padding-top: 70px;
+=======
+body {
+	/*font-family: 'Bree Serif', serif;*/
+	font-family: 'Josefin Slab', serif;
+	/*background-color: #111;*/
+	color: #111;
+	background: white;
+	padding-top: 70px;
+	/*color: white;*/
+	/*color: #CCCCCC;*/
+	/*color: #7F5959;*/
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 }
 
 h1 {
@@ -60,11 +73,29 @@ table th{
 	display: none;
 }
 
+<<<<<<< HEAD
+=======
+/*
+nav {
+	margin-bottom: 10px auto;
+	
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}*/
+
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 nav li {
 	float: left;
 	font-family: 'Arvo', serif;
 }
 
+<<<<<<< HEAD
 /*section {
 	position: absolute;
 	top: 20%;
@@ -83,12 +114,34 @@ nav li {
 .center {
 	position: absolute;
 	top: 50%;
+=======
+/*
+nav li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+nav li a:hover {
+	background-color: #111;
+	text-decoration: none;
+	color: white;
+}*/
+
+section {
+	position: absolute;
+	/*top: 50%;*/
+	top: 20%;
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 	left: 50%;
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
 	overflow: auto;
 }
 
+<<<<<<< HEAD
 .aspect-ratio {
 	margin: auto;
 	position: absolute;
@@ -104,6 +157,8 @@ nav li {
 	min-height: 920px;
 }
 
+=======
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 article {
 	margin-left: 20px;
 	margin-right: 20px;
@@ -127,6 +182,7 @@ article {
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
 	overflow: auto;
+<<<<<<< HEAD
 	/*min-height: 600px;*/
 	max-height: 900px;
 	/*min-width: 550px;
@@ -139,6 +195,10 @@ article {
 	max-height: 900px;
 }*/
 
+=======
+}
+
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 .push-down-little {
 	position: absolute;
 	top: 50%;
@@ -212,6 +272,7 @@ table tr td {
 	margin-top: 15px;
 	padding-right: 10px;
 }
+<<<<<<< HEAD
 
 #total-points {
 	font-size: 24px;
@@ -233,3 +294,5 @@ hr.dotted-line {
 }
 
 
+=======
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0

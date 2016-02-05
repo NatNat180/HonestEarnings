@@ -92,8 +92,37 @@ public class RegisterUser extends HttpServlet {
 					request.getSession().setAttribute("userName", userName);
 					doGet(request, response);
 				}
+<<<<<<< HEAD
 				
 			}
+=======
+				// //Assign a number to the first column of user_category table for
+				// however many id's there are in the user table
+				// String assignId = "INSERT INTO user_categories (id) VALUES (?)";
+				// PreparedStatement assignIdPrep = con.prepareStatement(assignId);
+				// //create a result set to loop through the id column in user table
+				// ResultSet findingId = st.executeQuery("SELECT COUNT(id) FROM
+				// user");
+				// //Create an int count and it's string equivalent
+				// int count = 0;
+				// String countString = String.valueOf(count);
+				// // While there is still something left in id column of user
+				// table,
+				// // Add one to count int, and assign the String of that count int
+				// to the count int
+				// // equivalent of the user_category id column
+				// while(findingId.next()){
+				// ++count;
+				// assignIdPrep.setString(count, countString);
+				// }
+				// //update table
+				// assignIdPrep.executeUpdate();
+				
+			}
+			// JDBC
+			// Begin the transaction, create a connection with the database and
+			// create a user table if it doesn't already exist
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			
 
 		} catch (Exception e) {

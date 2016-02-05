@@ -205,7 +205,11 @@ public class JustGotPaid extends HttpServlet {
 			String spendingValueString = Double.toString(spendingValue);
 			session.setAttribute("spending", spendingValueString);
 
+<<<<<<< HEAD
 			double vacationValue = calculateAmount(ProcessIncomeExpenses.getVacationInitial(), vacation);
+=======
+			double vacationValue = calculateAmount(ProcessIncomeExpenses.getSpendingInitial(), vacation);
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			String vacationValueString = Double.toString(vacationValue);
 			session.setAttribute("vacation", vacationValueString);
 

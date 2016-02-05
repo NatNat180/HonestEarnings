@@ -30,10 +30,14 @@ public class Logout extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
+<<<<<<< HEAD
 		out.print("<div class='alert alert-success' role='alert'>"
 				+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
 				+ "<span aria-hidden='true'>&times;</span></button>"
 				+ "You have successfully logged out!</div>");
+=======
+		out.print("You have successfully logged out!");
+>>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 		out.close();
 	}
 
