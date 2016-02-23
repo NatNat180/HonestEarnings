@@ -3,14 +3,10 @@ package com.acc.java;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-<<<<<<< HEAD
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-=======
-import java.sql.SQLException;
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,9 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-/**
- * Servlet implementation class ModifyUserData
- */
 @WebServlet("/record-expense")
 public class RecordExpense extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,23 +24,20 @@ public class RecordExpense extends HttpServlet {
         super();
 
     }
-<<<<<<< HEAD
     
     public Double calculateAmount(double currentValue, double expense){
     	
     	return currentValue - expense;
     }
-=======
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		Object userName = session.getAttribute("userName");
 		
-<<<<<<< HEAD
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdatabase", "root", "Bigbones12");
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://aaaj8td77qaymd.cvn0vweraivv.us-west-2.rds.amazonaws.com:3306/ebdb", "root", "Bigbones12");
 			
 			//Retrieve the table data
 			String getCurrentValues = "SELECT Auto_Insurance, Auto_Maintenance,"
@@ -285,16 +275,10 @@ public class RecordExpense extends HttpServlet {
 		updateCategories.setDouble(27, newAllowance); updateCategories.setObject(28, userName);
 		
 		updateCategories.executeUpdate();
-=======
-		//DO this for all categories!
-		String autoInsuranceExpenseString = request.getParameter("Auto Insurance");
-		double autoInsuranceExpense = Double.parseDouble(autoInsuranceExpenseString);
-		
-		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/userdatabase", "root", "Bigbones12");
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 		} catch (SQLException e) {
 		
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		doGet(request, response);
@@ -302,11 +286,7 @@ public class RecordExpense extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-<<<<<<< HEAD
 		request.getRequestDispatcher("/process-user-data").forward(request, response);
-=======
-		response.getWriter().append("Served at: ").append(request.getContextPath());
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 	}
 
 }

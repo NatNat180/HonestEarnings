@@ -9,16 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-//import org.apache.tomcat.jni.User;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -48,135 +44,6 @@ public class ProcessIncomeExpenses extends HttpServlet {
     	
     	return categoryAmount/income;
     }
-    
-	private static double autoInsurancePercent; private static double autoMaintenancePercent; private static double babysitterPercent;
-	private static double booksPercent; private static double cablePercent; private static double cleaningPercent;
-	private static double clothesPercent; private static double childrenPercent; private static double donationsPercent;
-	private static double electricityPercent; private static double entertainmentPercent; private static double eatingOutPercent;
-	private static double fuelPercent; private static double gasPercent; private static double groceriesPercent;
-	private static double giftsPercent; private static double groomingPercent; private static double homeRepairPercent;
-	private static double internetPercent; private static double medicalPercent; private static double phonePercent;
-	private static double retirementPercent; private static double savingsPercent; private static double spendingPercent;
-	private static double vacationPercent; private static double miscPercent;
-	
-	public static double getAutoInsurancePercent(){return autoInsurancePercent;}
-	public static double getAutoMaintenancePercent(){return autoMaintenancePercent;}
-	public static double getBabysitterPercent(){return babysitterPercent;}
-	public static double getBooksPercent(){return booksPercent;}
-	public static double getCablePercent(){return cablePercent;}
-	public static double getCleaningPercent(){return cleaningPercent;}
-	public static double getClothesPercent(){return clothesPercent;}
-	public static double getChildrenPercent(){return childrenPercent;}
-	public static double getDonationsPercent(){return donationsPercent;}
-	public static double getElectricityPercent(){return electricityPercent;}
-	public static double getEntertainmentPercent(){return entertainmentPercent;}
-	public static double getEatingOutPercent(){return eatingOutPercent;}
-	public static double getFuelPercent(){return fuelPercent;}
-	public static double getGasPercent(){return gasPercent;}
-	public static double getGroceriesPercent(){return groceriesPercent;}
-	public static double getGiftsPercent(){return giftsPercent;}
-	public static double getGroomingPercent(){return groomingPercent;}
-	public static double getHomeRepairPercent(){return homeRepairPercent;}
-	public static double getInternetPercent(){return internetPercent;}
-	public static double getMedicalPercent(){return medicalPercent;}
-	public static double getPhonePercent(){return phonePercent;}
-	public static double getRetirementPercent(){return retirementPercent;}
-	public static double getSavingsPercent(){return savingsPercent;}
-	public static double getSpendingPercent(){return spendingPercent;}
-	public static double getVacationPercent(){return vacationPercent;}
-	public static double getMiscPercent(){return miscPercent;}
-	
-	public static void setAutoInsurancePercent(double percent){autoInsurancePercent = percent;}
-	public static void setAutoMaintenancePercent(double percent){autoMaintenancePercent = percent;}
-	public static void setBabysitterPercent(double percent){babysitterPercent = percent;}
-	public static void setBooksPercent(double percent){booksPercent = percent;}
-	public static void setCablePercent(double percent){cablePercent = percent;}
-	public static void setCleaningPercent(double percent){cleaningPercent = percent;}
-	public static void setClothesPercent(double percent){clothesPercent = percent;}
-	public static void setChildrenPercent(double percent){childrenPercent = percent;}
-	public static void setDonationsPercent(double percent){donationsPercent = percent;}
-	public static void setElectricityPercent(double percent){electricityPercent = percent;}
-	public static void setEntertainmentPercent(double percent){entertainmentPercent = percent;}
-	public static void setEatingOutPercent(double percent){eatingOutPercent = percent;}
-	public static void setFuelPercent(double percent){fuelPercent = percent;}
-	public static void setGasPercent(double percent){gasPercent = percent;}
-	public static void setGroceriesPercent(double percent){groceriesPercent = percent;}
-	public static void setGiftsPercent(double percent){giftsPercent = percent;}
-	public static void setGroomingPercent(double percent){groomingPercent = percent;}
-	public static void setHomeRepairPercent(double percent){homeRepairPercent = percent;}
-	public static void setInternetPercent(double percent){internetPercent = percent;}
-	public static void setMedicalPercent(double percent){medicalPercent = percent;}
-	public static void setPhonePercent(double percent){phonePercent = percent;}
-	public static void setRetirementPercent(double percent){retirementPercent = percent;}
-	public static void setSavingsPercent(double percent){savingsPercent = percent;}
-	public static void setSpendingPercent(double percent){spendingPercent = percent;}
-	public static void setVacationPercent(double percent){vacationPercent = percent;}
-	public static void setMiscPercent(double percent){miscPercent = percent;}
-	
-	//Set up a way to access the initial value set for each category
-	private static double autoInsuranceInitial; private static double autoMaintenanceInitial; private static double babysitterInitial;
-	private static double booksInitial; private static double cableInitial; private static double cleaningInitial;
-	private static double clothesInitial; private static double childrenInitial; private static double donationsInitial;
-	private static double electricityInitial; private static double entertainmentInitial; private static double eatingOutInitial;
-	private static double fuelInitial; private static double gasInitial; private static double groceriesInitial;
-	private static double giftsInitial; private static double groomingInitial; private static double homeRepairInitial;
-	private static double internetInitial; private static double medicalInitial; private static double phoneInitial;
-	private static double retirementInitial; private static double savingsInitial; private static double spendingInitial;
-	private static double vacationInitial; private static double miscInitial;
-	
-	public static double getAutoInsuranceInitial(){return autoInsuranceInitial;}
-	public static double getAutoMaintenanceInitial(){return autoMaintenanceInitial;}
-	public static double getBabysitterInitial(){return babysitterInitial;}
-	public static double getBooksInitial(){return booksInitial;}
-	public static double getCableInitial(){return cableInitial;}
-	public static double getCleaningInitial(){return cleaningInitial;}
-	public static double getClothesInitial(){return clothesInitial;}
-	public static double getChildrenInitial(){return childrenInitial;}
-	public static double getDonationsInitial(){return donationsInitial;}
-	public static double getElectricityInitial(){return electricityInitial;}
-	public static double getEntertainmentInitial(){return entertainmentInitial;}
-	public static double getEatingOutInitial(){return eatingOutInitial;}
-	public static double getFuelInitial(){return fuelInitial;}
-	public static double getGasInitial(){return gasInitial;}
-	public static double getGroceriesInitial(){return groceriesInitial;}
-	public static double getGiftsInitial(){return giftsInitial;}
-	public static double getGroomingInitial(){return groomingInitial;}
-	public static double getHomeRepairInitial(){return homeRepairInitial;}
-	public static double getInternetInitial(){return internetInitial;}
-	public static double getMedicalInitial(){return medicalInitial;}
-	public static double getPhoneInitial(){return phoneInitial;}
-	public static double getRetirementInitial(){return retirementInitial;}
-	public static double getSavingsInitial(){return savingsInitial;}
-	public static double getSpendingInitial(){return spendingInitial;}
-	public static double getVacationInitial(){return vacationInitial;}
-	public static double getMiscInitial(){return miscInitial;}
-	
-	public static void setAutoInsuranceInitial(double value){autoInsuranceInitial = value;}
-	public static void setAutoMaintenanceInitial(double value){autoMaintenanceInitial = value;}
-	public static void setBabysitterInitial(double value){babysitterInitial = value;}
-	public static void setBooksInitial(double value){booksInitial = value;}
-	public static void setCableInitial(double value){cableInitial = value;}
-	public static void setCleaningInitial(double value){cleaningInitial = value;}
-	public static void setClothesInitial(double value){clothesInitial = value;}
-	public static void setChildrenInitial(double value){childrenInitial = value;}
-	public static void setDonationsInitial(double value){donationsInitial = value;}
-	public static void setElectricityInitial(double value){electricityInitial = value;}
-	public static void setEntertainmentInitial(double value){entertainmentInitial = value;}
-	public static void setEatingOutInitial(double value){eatingOutInitial = value;}
-	public static void setFuelInitial(double value){fuelInitial = value;}
-	public static void setGasInitial(double value){gasInitial = value;}
-	public static void setGroceriesInitial(double value){groceriesInitial = value;}
-	public static void setGiftsInitial(double value){giftsInitial = value;}
-	public static void setGroomingInitial(double value){groomingInitial = value;}
-	public static void setHomeRepairInitial(double value){homeRepairInitial = value;}
-	public static void setInternetInitial(double value){internetInitial = value;}
-	public static void setMedicalInitial(double value){medicalInitial = value;}
-	public static void setPhoneInitial(double value){phoneInitial = value;}
-	public static void setRetirementInitial(double value){retirementInitial = value;}
-	public static void setSavingsInitial(double value){savingsInitial = value;}
-	public static void setSpendingInitial(double value){spendingInitial = value;}
-	public static void setVacationInitial(double value){vacationInitial = value;}
-	public static void setMiscInitial(double value){miscInitial = value;}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -333,11 +200,7 @@ public class ProcessIncomeExpenses extends HttpServlet {
 			session.setAttribute("fuel", fuelValueString);
 			
 			String gasString = request.getParameter("gas");
-<<<<<<< HEAD
 			if(gasString != null){gas = Double.parseDouble(gasString);}
-=======
-			if(gasString != null){cleaning = Double.parseDouble(gasString);}
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			double gasValue = calculateAmount(gas, totalAllowance);
 			String gasValueString = Double.toString(gasValue);
 			session.setAttribute("gas", gasValueString);
@@ -367,11 +230,7 @@ public class ProcessIncomeExpenses extends HttpServlet {
 			session.setAttribute("homeRepair", homeRepairValueString);
 			
 			String internetString = request.getParameter("internet");
-<<<<<<< HEAD
 			if(internetString != null){internet = Double.parseDouble(internetString);}
-=======
-			if(internetString != null){cleaning = Double.parseDouble(internetString);}
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			double internetValue = calculateAmount(internet, totalAllowance);
 			String internetValueString = Double.toString(internetValue);
 			session.setAttribute("internet", internetValueString);
@@ -434,60 +293,6 @@ public class ProcessIncomeExpenses extends HttpServlet {
 			categoryValues.add(savingsValueString); categoryValues.add(spendingValueString);
 			categoryValues.add(vacationValueString); categoryValues.add(miscValueString);
 			
-			setAutoInsurancePercent(autoInsurance);
-			setAutoMaintenancePercent(autoMaintenance); 
-			setBabysitterPercent(babysitter);
-			setBooksPercent(books);
-			setCablePercent(cable);
-			setCleaningPercent(cleaning);
-			setClothesPercent(clothes);
-			setChildrenPercent(children);
-			setDonationsPercent(donations);
-			setElectricityPercent(electricity);
-			setEntertainmentPercent(entertainment);
-			setEatingOutPercent(eatingOut);
-			setFuelPercent(fuel);
-			setGasPercent(gas);
-			setGroceriesPercent(groceries);
-			setGiftsPercent(gifts);
-			setGroomingPercent(grooming);
-			setHomeRepairPercent(homeRepair);
-			setInternetPercent(internet);
-			setMedicalPercent(medical);
-			setPhonePercent(phone);
-			setRetirementPercent(retirement);
-			setSavingsPercent(savings);
-			setSpendingPercent(spending);
-			setVacationPercent(vacation);
-			setMiscPercent(misc);
-			
-			//Set the initial category amount to the category value created here
-			setAutoInsuranceInitial(autoInsuranceValue);
-			setAutoMaintenanceInitial(autoMaintenanceValue); 
-			setBabysitterInitial(babysitterValue);
-			setBooksInitial(booksValue);
-			setCableInitial(cableValue);
-			setCleaningInitial(cleaningValue);
-			setClothesInitial(clothesValue);
-			setChildrenInitial(childrenValue);
-			setDonationsInitial(donationsValue);
-			setElectricityInitial(electricityValue);
-			setEntertainmentInitial(entertainmentValue);
-			setEatingOutInitial(eatingOutValue);
-			setFuelInitial(fuelValue);
-			setGasInitial(gasValue);
-			setGroceriesInitial(groceriesValue);
-			setGiftsInitial(giftsValue);
-			setGroomingInitial(groomingValue);
-			setHomeRepairInitial(homeRepairValue);
-			setInternetInitial(internetValue);
-			setMedicalInitial(medicalValue);
-			setPhoneInitial(phoneValue);
-			setRetirementInitial(retirementValue);
-			setSavingsInitial(savingsValue);
-			setSpendingInitial(spendingValue);
-			setVacationInitial(vacationValue);
-			setMiscInitial(miscValue);
 
 			//Set title to each category attribute CATEGORY NAME LIST
 			String[] categoryNameArray = request.getParameterValues("category");
@@ -495,49 +300,93 @@ public class ProcessIncomeExpenses extends HttpServlet {
 			categoryNameList = Arrays.asList(categoryNameArray);
 			request.setAttribute("categoryName", categoryNameList);
 			
-			EntityManager em = com.acc.java.DBUtil.getEmFactory().createEntityManager();
-			EntityTransaction trans = em.getTransaction();
 			
 			//Create a table within the user_categories database 
 			Connection con;
 			try {
-				trans.begin();
-				con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/userdatabase", "root", "Bigbones12");
+				con = (Connection)DriverManager.getConnection("jdbc:mysql://aaaj8td77qaymd.cvn0vweraivv.us-west-2.rds.amazonaws.com:3306/ebdb", "root", "Bigbones12");
 
 				//Update user categories table
 				Object userName = session.getAttribute("userName");
-				String updateCategoryTable = "UPDATE user SET Auto_Insurance = ?, Auto_Maintenance = ?,"
-						+ "Babysitter = ?, Books = ?,"
-						+ "Cable = ?, Cleaning = ?, Clothes = ?, Children = ?,"
-						+ "Donations = ?, Electricity = ?, Entertainment = ?, Eating_Out = ?,"
-						+ "Fuel = ?, Gas = ?, Groceries = ?, Gifts = ?,"
-						+ "Grooming = ?, Home_Repair = ?, Internet = ?, Medical = ?,"
-						+ "Phone = ?, Retirement = ?, Savings = ?, Spending = ?,"
-						+ "Vacation = ?, Misc = ?, Total_Allowance = ?, Original_Allowance = ?"
-						+ "WHERE userName = ?";
-				PreparedStatement updateCategories = (PreparedStatement)con.prepareStatement(updateCategoryTable);
-				updateCategories.setDouble(1, autoInsuranceValue); updateCategories.setDouble(2, autoMaintenanceValue);
-				updateCategories.setDouble(3, babysitterValue); updateCategories.setDouble(4, booksValue);
-				updateCategories.setDouble(5, cableValue); updateCategories.setDouble(6, cleaningValue);
-				updateCategories.setDouble(7, clothesValue); updateCategories.setDouble(8, childrenValue);
-				updateCategories.setDouble(9, donationsValue); updateCategories.setDouble(10, electricityValue);
-				updateCategories.setDouble(11, entertainmentValue); updateCategories.setDouble(12, eatingOutValue);
-				updateCategories.setDouble(13, fuelValue); updateCategories.setDouble(14, gasValue);
-				updateCategories.setDouble(15, groceriesValue); updateCategories.setDouble(16, giftsValue);
-				updateCategories.setDouble(17, groomingValue); updateCategories.setDouble(18, homeRepairValue);
-				updateCategories.setDouble(19, internetValue); updateCategories.setDouble(20, medicalValue);
-				updateCategories.setDouble(21, phoneValue); updateCategories.setDouble(22, retirementValue);
-				updateCategories.setDouble(23, savingsValue); updateCategories.setDouble(24, spendingValue);
-				updateCategories.setDouble(25, vacationValue); updateCategories.setDouble(26, miscValue);
-				updateCategories.setDouble(27, totalAllowance); updateCategories.setDouble(28, totalAllowance);
-				updateCategories.setObject(29, userName);
-				updateCategories.executeUpdate();
+                String updateCategoryTable = "UPDATE user SET Auto_Insurance = ?, Auto_Maintenance = ?,"
+                        + "Babysitter = ?, Books = ?,"
+                        + "Cable = ?, Cleaning = ?, Clothes = ?, Children = ?,"
+                        + "Donations = ?, Electricity = ?, Entertainment = ?, Eating_Out = ?,"
+                        + "Fuel = ?, Gas = ?, Groceries = ?, Gifts = ?,"
+                        + "Grooming = ?, Home_Repair = ?, Internet = ?, Medical = ?,"
+                        + "Phone = ?, Retirement = ?, Savings = ?, Spending = ?,"
+                        + "Vacation = ?, Misc = ?, Total_Allowance = ?, Original_Allowance = ?,"
+                        + "Auto_Insurance_Original = ?, Auto_Maintenance_Original = ?,"
+                        + "Babysitter_Original = ?, Books_Original = ?,"
+                        + "Cable_Original = ?, Cleaning_Original = ?, Clothes_Original = ?, Children_Original = ?,"
+                        + "Donations_Original = ?, Electricity_Original = ?, Entertainment_Original = ?, Eating_Out_Original = ?,"
+                        + "Fuel_Original = ?, Gas_Original = ?, Groceries_Original = ?, Gifts_Original = ?,"
+                        + "Grooming_Original = ?, Home_Repair_Original = ?, Internet_Original = ?, Medical_Original = ?,"
+                        + "Phone_Original = ?, Retirement_Original = ?, Savings_Original = ?, Spending_Original = ?,"
+                        + "Vacation_Original = ?, Misc_Original = ?,"
+                        + "Auto_Insurance_Percent = ?, Auto_Maintenance_Percent = ?,"
+                        + "Babysitter_Percent = ?, Books_Percent = ?,"
+                        + "Cable_Percent = ?, Cleaning_Percent = ?, Clothes_Percent = ?, Children_Percent = ?,"
+                        + "Donations_Percent = ?, Electricity_Percent = ?, Entertainment_Percent = ?, Eating_Out_Percent = ?,"
+                        + "Fuel_Percent = ?, Gas_Percent = ?, Groceries_Percent = ?, Gifts_Percent = ?,"
+                        + "Grooming_Percent = ?, Home_Repair_Percent = ?, Internet_Percent = ?, Medical_Percent = ?,"
+                        + "Phone_Percent = ?, Retirement_Percent = ?, Savings_Percent = ?, Spending_Percent = ?,"
+                        + "Vacation_Percent = ?, Misc_Percent = ?"
+                        + "WHERE userName = ?";
+                PreparedStatement updateCategories = (PreparedStatement)con.prepareStatement(updateCategoryTable);
+                updateCategories.setDouble(1, autoInsuranceValue); updateCategories.setDouble(2, autoMaintenanceValue);
+                updateCategories.setDouble(3, babysitterValue); updateCategories.setDouble(4, booksValue);
+                updateCategories.setDouble(5, cableValue); updateCategories.setDouble(6, cleaningValue);
+                updateCategories.setDouble(7, clothesValue); updateCategories.setDouble(8, childrenValue);
+                updateCategories.setDouble(9, donationsValue); updateCategories.setDouble(10, electricityValue);
+                updateCategories.setDouble(11, entertainmentValue); updateCategories.setDouble(12, eatingOutValue);
+                updateCategories.setDouble(13, fuelValue); updateCategories.setDouble(14, gasValue);
+                updateCategories.setDouble(15, groceriesValue); updateCategories.setDouble(16, giftsValue);
+                updateCategories.setDouble(17, groomingValue); updateCategories.setDouble(18, homeRepairValue);
+                updateCategories.setDouble(19, internetValue); updateCategories.setDouble(20, medicalValue);
+                updateCategories.setDouble(21, phoneValue); updateCategories.setDouble(22, retirementValue);
+                updateCategories.setDouble(23, savingsValue); updateCategories.setDouble(24, spendingValue);
+                updateCategories.setDouble(25, vacationValue); updateCategories.setDouble(26, miscValue);
+                updateCategories.setDouble(27, totalAllowance); updateCategories.setDouble(28, totalAllowance);
+               
+                //Lock in the original amount of each category into the table
+                updateCategories.setDouble(29, autoInsuranceValue); updateCategories.setDouble(30, autoMaintenanceValue);
+                updateCategories.setDouble(31, babysitterValue); updateCategories.setDouble(32, booksValue);
+                updateCategories.setDouble(33, cableValue); updateCategories.setDouble(34, cleaningValue);
+                updateCategories.setDouble(35, clothesValue); updateCategories.setDouble(36, childrenValue);
+                updateCategories.setDouble(37, donationsValue); updateCategories.setDouble(38, electricityValue);
+                updateCategories.setDouble(39, entertainmentValue); updateCategories.setDouble(40, eatingOutValue);
+                updateCategories.setDouble(41, fuelValue); updateCategories.setDouble(42, gasValue);
+                updateCategories.setDouble(43, groceriesValue); updateCategories.setDouble(44, giftsValue);
+                updateCategories.setDouble(45, groomingValue); updateCategories.setDouble(46, homeRepairValue);
+                updateCategories.setDouble(47, internetValue); updateCategories.setDouble(48, medicalValue);
+                updateCategories.setDouble(49, phoneValue); updateCategories.setDouble(50, retirementValue);
+                updateCategories.setDouble(51, savingsValue); updateCategories.setDouble(52, spendingValue);
+                updateCategories.setDouble(53, vacationValue); updateCategories.setDouble(54, miscValue);
+               
+                //Set the category percent amounts in the table
+                updateCategories.setDouble(55, autoInsurance); updateCategories.setDouble(56, autoMaintenance);
+                updateCategories.setDouble(57, babysitter); updateCategories.setDouble(58, books);
+                updateCategories.setDouble(59, cable); updateCategories.setDouble(60, cleaning);
+                updateCategories.setDouble(61, clothes); updateCategories.setDouble(62, children);
+                updateCategories.setDouble(63, donations); updateCategories.setDouble(64, electricity);
+                updateCategories.setDouble(65, entertainment); updateCategories.setDouble(66, eatingOut);
+                updateCategories.setDouble(67, fuel); updateCategories.setDouble(68, gas);
+                updateCategories.setDouble(69, groceries); updateCategories.setDouble(70, gifts);
+                updateCategories.setDouble(71, grooming); updateCategories.setDouble(72, homeRepair);
+                updateCategories.setDouble(73, internet); updateCategories.setDouble(74, medical);
+                updateCategories.setDouble(75, phone); updateCategories.setDouble(76, retirement);
+                updateCategories.setDouble(77, savings); updateCategories.setDouble(78, spending);
+                updateCategories.setDouble(79, vacation); updateCategories.setDouble(80, misc);
+               
+                updateCategories.setObject(81, userName);
+                updateCategories.executeUpdate();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				trans.rollback();
+
 			} finally {
-				em.close();
+
 			}
 		
 			doGet(request, response);

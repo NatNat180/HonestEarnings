@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
  * Honest Earnings
  * @author Nathan Argall
  * 
- * Things to figure out:
+ *
  * 
  */
-@WebServlet("/index")
+@WebServlet("")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,13 +32,15 @@ public class Home extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//If user is not logged in, send them to login page. Else, send them home. 
 		HttpSession session = request.getSession(false);
 		if(session == null || session.getAttribute("userName") == null){
-			request.getRequestDispatcher("/WEB-INF/index.jsp").include(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			//request.getServletContext().getRequestDispatcher("/WEB-INF/sql.jsp").forward(request, response);
+			//response.sendRedirect("/new");
 		} else {
-			request.getServletContext().getRequestDispatcher("/process-user-data").forward(request, response);
+			//request.getServletContext().getRequestDispatcher("/process-user-data").forward(request, response);
+			response.sendRedirect("/process-user-data");
 		}
 	}
 
