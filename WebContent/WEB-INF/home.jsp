@@ -3,33 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mysql.*" %>
 <%@ page import="java.sql.*" %> 
-
-<c:import url="/WEB-INF/header-logged-in.html"/>
+<!DOCTYPE html>
+<html lang="eng">
 <head>
-<<<<<<< HEAD
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 <script>
 $(document).ready(function(){
 	$("#total-allowance.hide").fadeIn(500).removeClass('hide');
-=======
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-$(document).ready(function(){
-	$("#total-allowance.hide").fadeIn(1000).removeClass('hide');
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 });
 
 </script>
 
 <script>
 $(document).ready(function(){
-<<<<<<< HEAD
 	$(".table-bordered.hide").fadeIn(1000).removeClass('hide');
-=======
-	$(".table-bordered.hide").fadeIn(2000).removeClass('hide');
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 });
 
 </script>
@@ -39,7 +32,6 @@ $(document).ready(function(){
 		return confirm("By clicking this, you're saying you've just been paid.");
 	}
 </script>
-<<<<<<< HEAD
 
 <script type="text/javascript">
 	function expenseConfirmation(){
@@ -52,8 +44,6 @@ $(document).ready(function(){
 		return confirm("By clicking this, you'll discard your current budget plan to start up a new one. Is this okay?");
 	}
 </script>
-=======
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
   
 <script type="text/javascript">
 	function recordExpense(cbox){
@@ -65,28 +55,19 @@ $(document).ready(function(){
 			input.id = "expense-amount";
 			
 			var div = document.createElement("div");
-<<<<<<< HEAD
 			<!--div.id = cbox.name;-->
 			div.id = cbox.value;
-=======
-			div.id = cbox.name;
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 			div.innerHTML = cbox.value + " expense: ";
 			div.appendChild(input);
 			
 			document.getElementById("expense-input").appendChild(div);	
 		} else {
-<<<<<<< HEAD
 			document.getElementById(cbox.value).remove();
-=======
-			document.getElementById(cbox.name).remove();
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 	}
 }
 </script>
 
 <script type="text/javascript">
-<<<<<<< HEAD
 function isNumberKey(evt) {
    var charCode = (evt.which) ? evt.which : event.keyCode;
    if (charCode > 31 && (charCode < 46 || charCode > 57)){
@@ -95,8 +76,10 @@ function isNumberKey(evt) {
    return true;
 }
 </script>
+<title>Honest Earnings</title>
+</head>
 <body>
-
+<c:import url="/WEB-INF/header-logged-in.html"/>
 <section class="container">
 
 <h3 style="text-align: center; font-family: 'Pacifico', cursive; font-size: 32px;">Total Allowance</h3>
@@ -112,7 +95,7 @@ function isNumberKey(evt) {
 	<table class="table-bordered hide" style="width: 100%;">
 	<tr>
 		<th>Category</th>
-		<th class="align-center">Allowance</th>
+		<th>Allowance</th>
 		<th class="align-center">Record Expense&nbsp;<span class="glyphicon glyphicon-pencil"></span></th>
 	</tr>
 	<!-- This is what you had originally -->
@@ -124,10 +107,10 @@ function isNumberKey(evt) {
 		<!-- If value is negative, display as red -->
 		<c:choose>
 		<c:when test="${category.value < 0.0}">
-		<td style='color: #980009;' class="align-center">$<c:out value="${category.value}"/></td>
+		<td style='color: #980009;'>$<c:out value="${category.value}"/></td>
 		</c:when>
 		<c:otherwise> <!-- otherwise, display as normal -->
-		<td class="align-center">$<c:out value="${category.value}"/></td>
+		<td>$<c:out value="${category.value}"/></td>
 		</c:otherwise>
 		</c:choose>
 		<td class="align-center"><input type="checkbox" name="category" value="${category.key}" onclick="recordExpense(this);"></td>
@@ -167,70 +150,6 @@ function isNumberKey(evt) {
 
 
 
-=======
-function checkExpense(){
-	var amount = document.getElementById("expense-input");
-	var regex  = /^\d+(?:\.\d{0,2})$/;
-	if (regex.test(amount)) {
-		return amount;
-	} else {
-		alert("Input a numeric dollar amount with a decimal.");
-	} 
-	return false;
-}
-</script>
-
-<script type="text/javascript">
-	function recordIncome(){
-	var amount = document.getElementById("additional-income");
-	var regex  = /^\d+(?:\.\d{0,2})$/;
-	if(amount != null){
-		if (regex.test(amount)) {
-			return confirm("By clicking this, you're saying you've just been paid.");
-		} else {
-			alert("Input a numeric dollar amount only.");
-		}
-	} 
-	return false;
-}
-</script>
-<body>
-<section class="push-down">
-<h3 style="text-align: center; font-family: 'Pacifico', cursive;">Total Allowance Per Pay Period</h3>
-<h2 style="text-align: center;" id="total-allowance" class="hide">$<c:out value="${totalAllowance['Total Allowance']}"></c:out></h2>
-<form method="post" action="just-got-paid" onsubmit="return paidConfirmation();">
-<h2 style="text-align: center; margin-top: -10px;"><button class="paid-button">Just Got Paid!</button></h2>
-</form>
-	<table class="table-bordered hide">
-	<tr>
-		<th>Category</th>
-		<th>Allowance</th>
-		<th class="align-center">Record Expense</th>
-	</tr>
-	
-	<c:forEach var="category" items="${categoryMap}">
-	<tr>
-	<c:if test="${category.value != 0.0}">
-		<td><c:out value="${category.key}"/></td>
-		<td id="${category.key}">$<c:out value="${category.value}"/></td>
-		<td class="align-center"><input type="checkbox" name="category" value="${category.key}" onclick="recordExpense(this);"></td>
-	</c:if>
-	</tr>
-	</c:forEach>
-	</table>	
-<br />
-<form method="post" action="record-expense" onsubmit="return checkExpense();">
-	<div id="expense-input"></div>
-	<input type="submit" value="Record Expenses">
-</form>
-<br>
-<form method="post" action="additional-income" onsubmit="return paidConfirmation()">
-Additional Income: <input type="text" id= "additional-income" name="additional-income" class="form-control" placeholder="record addiontal income received here">
-<h4><button>Record Additional Income</button></h4>
-</form>
-
-
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 </section>
 </body>
 </html>

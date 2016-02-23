@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:import url="/WEB-INF/header.html"/>
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<title>Honest Earnings - About</title>
+</head>
 <body>
-<<<<<<< HEAD
-
+<c:import url="/WEB-INF/header.html"/>
 <section class="container">
 <div class="panel panel-info">
 <div class="panel-heading">
@@ -23,21 +30,5 @@
 </div>
 </section>
 
-=======
-<section>
-<div>
-	<article>
-		<h2>Welcome To Peace Of Mind</h2>
-		<p>Honest Earnings is an application that gives you peace of mind and better control of your budget. Working on what you earn each pay-period, 
-		and deducting known expenses, Honest Earnings creates for the user a set 'allowance' to be able to spend each time he/she is paid</p>
-		<h2>How It Works</h2>
-		<p>You choose which categories to include in your budget. Instead of needing to set a particular dollar amount to each category, you assign points 
-		(a percent amount of your total allowance) to each. Thus, the application does the math for you and the dollar amounts are given to you. You now have much more control and knowledge of how
-		much you may spend in each category. Whenever you spend your hard-earned money, simply select the category you spent it in and add the amount you spent. The application subtracts this amount 
-		from your category amount, and shows you how much you have left to spend within that particular category. 
-	</article>
-</div>
-</section>
->>>>>>> 3e24079e0d4621833432c953dbe599c4487cf0d0
 </body>
 </html>
